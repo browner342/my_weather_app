@@ -1,4 +1,4 @@
-const kMainScreenId = 'mainScreenId';
+const kMainScreenId = '/mainScreenId';
 const kLoadingScreenId = 'loadingScreenId';
 const kManageCitiesScreenId = 'manageCitiesScreenId';
 const kGetWeatherScreenId = 'getWeatherScreenId';

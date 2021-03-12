@@ -1,11 +1,8 @@
 import 'package:flutter/foundation.dart';
+import 'package:my_weather_app/data/location/my_location.dart';
 
 class CityData extends ChangeNotifier {
   List<String> _cityList = [
-    'Las Palmas',
-    'New York',
-    'Berlin',
-    'Wroclaw',
     'Warsaw',
     'London',
     'Amsterdam',
@@ -19,6 +16,14 @@ class CityData extends ChangeNotifier {
   deleteCity(int index) {
     _cityList.removeAt(index);
     notifyListeners();
+  }
+
+  Future<void> firstElemMyLocation() async {
+    String locationCityName = await MyLocation().getCityNameFromLocation();
+
+    if (locationCityName != null) {
+      _cityList.insert(0, locationCityName);
+    }
   }
 
   List<String> get showCities => _cityList;

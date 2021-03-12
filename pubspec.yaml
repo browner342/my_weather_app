@@ -20,10 +20,16 @@ dependencies:
   carousel_slider: ^3.0.0
   provider: ^4.1.2
   swipedetector: 1.2.0
+  geolocator: ^6.2.0
+  geocoder: ^0.2.1
+  dartz: ^0.8.6
+  http: ^0.12.0+2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  mockito: ^4.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
