@@ -1,12 +1,10 @@
 import 'package:flutter/foundation.dart';
+import 'package:get_it/get_it.dart';
 import 'package:my_weather_app/data/location/my_location.dart';
 
 class CityData extends ChangeNotifier {
-  List<String> _cityList = [
-    'Warsaw',
-    'London',
-    'Amsterdam',
-  ];
+  MyLocation myLocation = GetIt.instance<MyLocation>();
+  List<String> _cityList = [];
 
   addCity(String cityName) {
     _cityList.add(cityName);
@@ -19,7 +17,7 @@ class CityData extends ChangeNotifier {
   }
 
   Future<void> firstElemMyLocation() async {
-    String locationCityName = await MyLocation().getCityNameFromLocation();
+    String locationCityName = await myLocation.getCityNameFromLocation();
 
     if (locationCityName != null) {
       _cityList.insert(0, locationCityName);
