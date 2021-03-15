@@ -15,6 +15,7 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
   Future<String> fetchData() async {
+    await Provider.of<CityData>(context, listen: false).getDataFromMemory();
     await Provider.of<CityData>(context, listen: false).firstElemMyLocation();
 
     return MainScreen.id;

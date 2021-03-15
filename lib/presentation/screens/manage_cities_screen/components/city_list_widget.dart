@@ -17,8 +17,8 @@ class CityList extends StatelessWidget {
                   height: kCityTileHeight,
                   child: CityTile(
                     cityName: Provider.of<CityData>(context).showCities[i],
-                    callbackSwipeDetector: () {
-                      Provider.of<CityData>(context, listen: false)
+                    callbackSwipeDetector: () async {
+                      await Provider.of<CityData>(context, listen: false)
                           .deleteCity(i);
                     },
                   ),

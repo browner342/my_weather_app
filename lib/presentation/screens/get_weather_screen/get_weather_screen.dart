@@ -50,8 +50,8 @@ class GetWeatherScreen extends StatelessWidget {
               Container(
                 decoration: kButtonStyle,
                 child: FlatButton(
-                  onPressed: () {
-                    Provider.of<CityData>(context, listen: false)
+                  onPressed: () async {
+                    await Provider.of<CityData>(context, listen: false)
                         .addCity(cityName);
                     Navigator.pop(context);
                   },

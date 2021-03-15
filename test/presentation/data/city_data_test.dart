@@ -18,15 +18,15 @@ void main() {
   cityDataModel.myLocation = MockMyLocation();
 
   cityDataModel.addCity('Wroclaw');
-  cityDataModel.addCity('Wroclaw');
-  cityDataModel.addCity('Wroclaw');
+  cityDataModel.addCity('Wroclaw1');
+  cityDataModel.addCity('Wroclaw2');
 
   group('Given City Data page Loads', () {
     test(
         'When user add a city to a list of cities, bandage should increment by one',
         () {
       expect(cityDataModel.showCities.length, 3);
-      cityDataModel.addCity('Wroclaw');
+      cityDataModel.addCity('Wroclaw3');
       expect(cityDataModel.showCities.length, 4);
     });
 
@@ -43,6 +43,14 @@ void main() {
         () async {
       await cityDataModel.firstElemMyLocation();
       expect(cityDataModel.showCities[0], 'Berlin');
+    });
+
+    test(
+        'When user add city already existing on list, list should not allow for it and still have same amount of objects',
+        () {
+      expect(cityDataModel.showCities.length, 3);
+      cityDataModel.addCity('Wroclaw1');
+      expect(cityDataModel.showCities.length, 3);
     });
   });
 }

@@ -1,0 +1,1 @@
+const kMaxAmountCitiesInMemory = 10;
