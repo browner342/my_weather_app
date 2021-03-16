@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:my_weather_app/data/constants/constants.dart';
 import 'package:my_weather_app/data/local_memmory_shared_preferences/shared_preferences_impl.dart';
 import 'package:my_weather_app/data/location/my_location.dart';
+import 'package:my_weather_app/data/weather/weather_data.dart';
 
 class CityData extends ChangeNotifier {
   MyLocation myLocation = GetIt.instance<MyLocation>();
