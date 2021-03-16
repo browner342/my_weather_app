@@ -4,21 +4,21 @@ import 'package:my_weather_app/data/weather/weather_data.dart';
 import 'package:my_weather_app/domain/weather/weather.dart';
 
 class CitiesWeather extends ChangeNotifier {
-  var citiesWeather = Map();
+  var citiesWeather = Map<String, Weather>();
   List<DataDecoder> dataDecoderList;
 
-  CitiesWeather() {
-    citiesWeather[''] = Weather();
-  }
+  // CitiesWeather() {
+  //   citiesWeather[''] = Weather();
+  // }
 
-  void setCityWeather(List<String> cityNames) async {
+  Future<void> setCityWeather(List<String> cityNames) async {
     citiesWeather.clear();
-    int index = 0;
+
+    //crating weather list with weather items
     List<Weather> weatherList = await _getDecodedWeatherData(cityNames);
 
-    for (String cityName in cityNames) {
-      citiesWeather['$cityName'] = weatherList[index];
-      index++;
+    for (int index = 0; index < cityNames.length; index++) {
+      citiesWeather['${cityNames[index]}'] = weatherList[index];
     }
 
     notifyListeners();
@@ -26,11 +26,14 @@ class CitiesWeather extends ChangeNotifier {
 
   Future<List<Weather>> _getDecodedWeatherData(List<String> cityNames) async {
     List<Weather> weatherDataList = [];
-    for (String cityName in cityNames) {
-      var weatherData = await WeatherData().weatherDataFromNet(cityName);
+    for (int i = 0; i < cityNames.length; i++) {
+      //download data from API
+      var weatherData = await WeatherData().weatherDataFromNet(cityNames[i]);
 
+      // decode data to weather class
       DataDecoder dataDecoder = DataDecoder(weatherData: weatherData);
       Weather weather = dataDecoder.decodeData();
+
       weatherDataList.add(weather);
     }
 

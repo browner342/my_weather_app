@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_weather_app/domain/weather/weather_components/wind.dart';
 
-class Wind extends StatelessWidget {
+class WindComponent extends StatelessWidget {
+  WindComponent({this.wind});
+  final Wind wind;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -8,8 +12,9 @@ class Wind extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text('Wind'),
+          //TODO: change from hardCode
           Text('Direction: Northeast'),
-          Text('12-28 km/h')
+          Text('${wind.speed} km/h')
         ],
       ),
     );

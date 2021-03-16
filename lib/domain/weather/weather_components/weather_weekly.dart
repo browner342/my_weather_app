@@ -1,8 +1,8 @@
 import 'package:my_weather_app/domain/constants/constants.dart';
 
 class WeatherWeekly {
-  List<double> temperatureDay = List(kAmoutWeeklyComponents);
-  List<double> temperatureNight = List(kAmoutWeeklyComponents);
+  List<int> temperatureDay = List(kAmoutWeeklyComponents);
+  List<int> temperatureNight = List(kAmoutWeeklyComponents);
   List<String> weatherIcon = List(kAmoutWeeklyComponents);
 
   // List<double> get temperatureDay => _temperatureDay;

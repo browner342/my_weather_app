@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:my_weather_app/domain/cites_weather.dart';
 import 'package:my_weather_app/presentation/constants/const_styles.dart';
+import 'package:provider/provider.dart';
+
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1)}";
+  }
+}
 
 class FrontCardContent extends StatelessWidget {
-  FrontCardContent({this.cityName});
+  FrontCardContent({this.cityName, this.positionedNumber});
   final String cityName;
+  final int positionedNumber;
 
   @override
   Widget build(BuildContext context) {
+    final actual =
+        Provider.of<CitiesWeather>(context).citiesWeather[cityName].weatherNow;
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -20,12 +31,12 @@ class FrontCardContent extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Icon(Icons.wb_sunny),
+            child: Text(actual.weatherIcon),
           ),
           Text(
-            'Sunny',
+            actual.condition.capitalize(),
           ),
-          Text('20 / 18')
+          Text(actual.temperatureDay.toString()),
         ],
       ),
     );

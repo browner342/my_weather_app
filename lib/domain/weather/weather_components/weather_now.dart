@@ -1,9 +1,13 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+
 class WeatherNow {
-  double temperatureDay = 0;
+  int temperatureDay = 0;
   String weatherIcon = '';
   String condition = '';
+  Color color = Colors.white;
 
-  //TODO: Add color
   // double get temperatureDay => _temperatureDay;
   // double get temperatureNight => _temperatureNight;
   // String get weatherIcon => _weatherIcon;

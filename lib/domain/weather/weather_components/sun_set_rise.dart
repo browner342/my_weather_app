@@ -1,6 +1,6 @@
 class SunSetRise {
-  var sunSetTime = 0;
-  var sunRiseTime = 0;
+  var sunSetTime = DateTime.now();
+  var sunRiseTime = DateTime.now();
   //
   // dynamic get sunSetTime => _sunSetTime;
   // dynamic get sunRiseTIme => _sunRiseTime;

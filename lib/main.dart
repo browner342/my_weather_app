@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:my_weather_app/data/location/my_location.dart';
+import 'package:my_weather_app/domain/cites_weather.dart';
 import 'package:my_weather_app/presentation/data/city_data.dart';
 import 'package:my_weather_app/presentation/screens/get_weather_screen/get_weather_screen.dart';
 import 'package:my_weather_app/presentation/screens/loading_screen.dart';
@@ -14,6 +15,7 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<CityData>(create: (_) => CityData()),
+      ChangeNotifierProvider<CitiesWeather>(create: (_) => CitiesWeather()),
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
