@@ -1,5 +1,5 @@
 class Wind {
-  String direction = '';
+  String direction = 'fail';
   int speed = 0;
 
   // String get direction => _direction;

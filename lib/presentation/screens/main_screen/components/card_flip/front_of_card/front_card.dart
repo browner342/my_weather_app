@@ -14,20 +14,26 @@ class FrontCard extends StatelessWidget {
     final cityName =
         Provider.of<CityData>(context).showCities[positionedNumber];
 
-    return Container(
-      decoration: BoxDecoration(
-        shape: BoxShape.rectangle,
-        borderRadius: BorderRadius.circular(20.0),
-        color: Provider.of<CitiesWeather>(context)
-            .citiesWeather[cityName]
-            .weatherNow
-            .color,
-      ),
-      child: Center(
-          child: FrontCardContent(
-        cityName: cityName,
-        positionedNumber: positionedNumber,
-      )),
-    );
+    if (Provider.of<CitiesWeather>(context).citiesWeather[cityName] != null) {
+      return Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(20.0),
+          color: Provider.of<CitiesWeather>(context)
+              .citiesWeather[cityName]
+              .weatherNow
+              .color,
+        ),
+        child: Center(
+            child: FrontCardContent(
+          cityName: cityName,
+          positionedNumber: positionedNumber,
+        )),
+      );
+    } else {
+      return Container(
+        child: Text('Front'),
+      );
+    }
   }
 }

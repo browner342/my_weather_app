@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class WeatherNow {
   int temperatureDay = 0;
-  String weatherIcon = '';
-  String condition = '';
+  String weatherIcon = 'Error';
+  String condition = 'Error';
   Color color = Colors.white;
 
   // double get temperatureDay => _temperatureDay;
