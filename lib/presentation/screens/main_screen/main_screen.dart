@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:my_weather_app/data/networking/internet_connection.dart';
 import 'package:my_weather_app/domain/cites_weather.dart';
+import 'package:my_weather_app/presentation/components/failures.dart';
 import 'package:my_weather_app/presentation/constants/const_names.dart';
 import 'package:my_weather_app/presentation/constants/const_styles.dart';
 import 'package:my_weather_app/presentation/data/city_data.dart';
@@ -20,10 +22,11 @@ class MainScreen extends StatelessWidget {
 
     return RefreshIndicator(
       onRefresh: () async {
-        var result = await InternetAddress.lookup('google.com');
-        if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        if (await InternetConnection().isConnected()) {
           List<String> cityNames = cityData.showCities;
           await citiesWeather.setCityWeather(cityNames);
+        } else {
+          Failures().noInternetConnection(context);
         }
       },
       child: Scaffold(
