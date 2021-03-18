@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:my_weather_app/domain/cites_weather.dart';
-import 'package:my_weather_app/presentation/constants/const_styles.dart';
 import 'package:my_weather_app/presentation/screens/main_screen/components/card_flip/back_of_card/content_components/horizontal_divider.dart';
 import 'package:my_weather_app/presentation/screens/main_screen/components/card_flip/back_of_card/content_components/hourly_component.dart';
 import 'package:my_weather_app/presentation/screens/main_screen/components/card_flip/back_of_card/content_components/sun_set_rise.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_weather_app/domain/cites_weather.dart';
 import 'package:my_weather_app/presentation/data/city_data.dart';
 import 'package:my_weather_app/presentation/screens/main_screen/components/card_flip/back_of_card/back_card_content.dart';
 import 'package:provider/provider.dart';

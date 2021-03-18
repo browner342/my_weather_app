@@ -10,9 +10,8 @@ extension StringExtension on String {
 }
 
 class FrontCardContent extends StatelessWidget {
-  FrontCardContent({this.cityName, this.positionedNumber});
+  FrontCardContent({this.cityName});
   final String cityName;
-  final int positionedNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -20,25 +19,36 @@ class FrontCardContent extends StatelessWidget {
         Provider.of<CitiesWeather>(context).citiesWeather[cityName].weatherNow;
 
     return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Text(
-              cityName,
-              style: kTitleStyle,
+      width: MediaQuery.of(context).size.width,
+      child: Center(
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(
+                  cityName,
+                  style: kTitleStyle,
+                ),
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Text(actual.weatherIcon),
-          ),
-          Text(
-            actual.condition.capitalize(),
-          ),
-          Text(actual.temperatureDay.toString()),
-        ],
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(actual.weatherIcon),
+              ),
+            ),
+            Center(
+              child: Text(
+                actual.condition.capitalize(),
+              ),
+            ),
+            Center(
+              child: Text(actual.temperatureDay.toString()),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -9,9 +9,11 @@ class CityCards extends StatelessWidget {
   List<FlipAnimationCards> flipCardsBuilder() {
     List<FlipAnimationCards> cardHolder = [];
     for (int i = 0; i < amountOfCards; i++) {
-      cardHolder.add(FlipAnimationCards(
-        positionedNumber: i,
-      ));
+      cardHolder.add(
+        FlipAnimationCards(
+          positionedNumber: i,
+        ),
+      );
     }
     return cardHolder;
   }

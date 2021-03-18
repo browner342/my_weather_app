@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_weather_app/domain/cites_weather.dart';
 import 'package:my_weather_app/domain/constants/constants.dart';
 import 'package:my_weather_app/domain/weather/weather_components/weather_hourly.dart';
 

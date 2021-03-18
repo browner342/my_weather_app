@@ -17,7 +17,6 @@ class FrontCard extends StatelessWidget {
       positionedNumber: positionedNumber,
       child: FrontCardContent(
         cityName: cityName,
-        positionedNumber: positionedNumber,
       ),
     );
   }
