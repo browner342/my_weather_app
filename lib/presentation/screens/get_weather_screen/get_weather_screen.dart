@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:my_weather_app/data/networking/place_service.dart';
 import 'package:my_weather_app/domain/cites_weather.dart';
 import 'package:my_weather_app/presentation/constants/const_names.dart';
 import 'package:my_weather_app/presentation/constants/const_styles.dart';
 import 'package:my_weather_app/presentation/data/city_data.dart';
 import 'package:my_weather_app/presentation/data/spinner.dart';
+import 'package:my_weather_app/presentation/screens/get_weather_screen/address_search.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
 String cityName;
 
@@ -18,8 +21,8 @@ class GetWeatherScreen extends StatelessWidget {
     final spinner = Provider.of<Spinner>(context);
     final cityData = Provider.of<CityData>(context, listen: false);
     final citiesWeather = Provider.of<CitiesWeather>(context, listen: false);
-
-    SystemChannels.textInput.invokeMethod('TextInput.show');
+    final _controller = TextEditingController();
+    _controller.text = '';
 
     return ModalProgressHUD(
       inAsyncCall: spinner.showSpinner,
@@ -56,9 +59,20 @@ class GetWeatherScreen extends StatelessWidget {
                   child: TextField(
                     style: TextStyle(color: Colors.black),
                     decoration: kTextFieldDecoration,
-                    autofocus: true,
-                    onChanged: (value) {
-                      cityName = value;
+                    controller: _controller,
+                    readOnly: true,
+                    onTap: () async {
+                      // generate a new token here
+                      final sessionToken = Uuid().v4();
+                      final Suggestion result = await showSearch(
+                        context: context,
+                        delegate: AddressSearch(sessionToken),
+                      );
+
+                      cityName = result.placeId.split(',')[0];
+                      if (cityName != null) {
+                        _controller.text = cityName;
+                      }
                     },
                   ),
                 ),
@@ -66,14 +80,18 @@ class GetWeatherScreen extends StatelessWidget {
                   decoration: kButtonStyle,
                   child: FlatButton(
                     onPressed: () async {
-                      spinner.changeSpinnerState();
-                      await cityData.addCity(cityName);
+                      if (cityName != null) {
+                        spinner.changeSpinnerState();
+                        await cityData.addCity(cityName);
 
-                      List<String> cityNames = cityData.showCities;
-                      await citiesWeather.setCityWeather(cityNames);
+                        List<String> cityNames = cityData.showCities;
+                        await citiesWeather.setCityWeather(cityNames);
 
-                      spinner.changeSpinnerState();
-                      Navigator.pop(context);
+                        spinner.changeSpinnerState();
+
+                        int count = 0;
+                        Navigator.of(context).popUntil((_) => count++ >= 2);
+                      }
                     },
                     child: Text(
                       'Get Weather',

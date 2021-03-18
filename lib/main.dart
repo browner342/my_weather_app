@@ -10,6 +10,7 @@ import 'package:my_weather_app/presentation/screens/loading_screen.dart';
 import 'package:my_weather_app/presentation/screens/main_screen/main_screen.dart';
 import 'package:my_weather_app/presentation/screens/manage_cities_screen/manage_cities_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:dcdg/dcdg.dart';
 
 void main() {
   GetIt.instance.registerLazySingleton(() => MyLocation());

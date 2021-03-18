@@ -1,0 +1,335 @@
+@startuml
+set namespaceSeparator ::
+
+class "my_weather_app::data::local_memmory_shared_preferences::shared_preferences_impl.dart::SharedPreferencesImpl" {
+  +Future showCityListFromMemory()
+  -Future _clearMemory()
+  +Future updateMemory()
+}
+
+class "my_weather_app::data::location::my_location.dart::MyLocation" {
+  -double _longitude
+  -double _latitude
+  -Future _myActualLocation()
+  +Future getCityNameFromLocation()
+}
+
+class "my_weather_app::data::networking::networking.dart::Networking" {
+  +String url
+  +Future getData()
+}
+
+class "my_weather_app::data::weather::data_decoder.dart::DataDecoder" {
+  +dynamic weatherData
+  +Weather weather
+  +WeatherModel weatherModel
+  +int conditions
+  +Weather decodeData()
+  -WeatherNow _decodeWeatherNow()
+  -WeatherHourly _decodeWeatherHourly()
+  -WeatherWeekly _decodeWeatherWeekly()
+  -Wind _decodeWind()
+  -SunSetRise _decodeSunSetRise()
+}
+
+"my_weather_app::data::weather::data_decoder.dart::DataDecoder" o-- "my_weather_app::domain::weather::weather.dart::Weather"
+"my_weather_app::data::weather::data_decoder.dart::DataDecoder" o-- "my_weather_app::domain::weather::weather_model::weather_model.dart::WeatherModel"
+
+class "my_weather_app::data::weather::weather_data.dart::WeatherData" {
+  -dynamic _weatherData
+  +dynamic getWeatherData
+  +Future weatherDataFromNet()
+}
+
+class "my_weather_app::domain::cites_weather.dart::CitiesWeather" {
+  +Map<String, Weather> citiesWeather
+  +List<DataDecoder> dataDecoderList
+  +Future setCityWeather()
+  -Future _getDecodedWeatherData()
+}
+
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "my_weather_app::domain::cites_weather.dart::CitiesWeather"
+
+class "my_weather_app::domain::weather::weather.dart::Weather" {
+  +String cityName
+  +WeatherNow weatherNow
+  +WeatherHourly weatherHourly
+  +WeatherWeekly weatherWeekly
+  +Wind wind
+  +SunSetRise sunSetRise
+}
+
+"my_weather_app::domain::weather::weather.dart::Weather" o-- "my_weather_app::domain::weather::weather_components::weather_now.dart::WeatherNow"
+"my_weather_app::domain::weather::weather.dart::Weather" o-- "my_weather_app::domain::weather::weather_components::weather_hourly.dart::WeatherHourly"
+"my_weather_app::domain::weather::weather.dart::Weather" o-- "my_weather_app::domain::weather::weather_components::weather_weekly.dart::WeatherWeekly"
+"my_weather_app::domain::weather::weather.dart::Weather" o-- "my_weather_app::domain::weather::weather_components::wind.dart::Wind"
+"my_weather_app::domain::weather::weather.dart::Weather" o-- "my_weather_app::domain::weather::weather_components::sun_set_rise.dart::SunSetRise"
+
+class "my_weather_app::domain::weather::weather_components::sun_set_rise.dart::SunSetRise" {
+  +DateTime sunSetTime
+  +DateTime sunRiseTime
+}
+
+class "my_weather_app::domain::weather::weather_components::weather_hourly.dart::WeatherHourly" {
+  +List<int> temperature
+  +List<String> weatherIcon
+}
+
+class "my_weather_app::domain::weather::weather_components::weather_now.dart::WeatherNow" {
+  +int temperatureDay
+  +dynamic weatherIcon
+  +dynamic condition
+  +List<Color> colors
+}
+
+class "my_weather_app::domain::weather::weather_components::weather_weekly.dart::WeatherWeekly" {
+  +List<int> temperatureDay
+  +List<int> temperatureNight
+  +List<String> weatherIcon
+}
+
+class "my_weather_app::domain::weather::weather_components::wind.dart::Wind" {
+  +String direction
+  +int speed
+}
+
+class "my_weather_app::domain::weather::weather_model::weather_model.dart::WeatherModel" {
+  +dynamic icon
+  +List<Color> colors
+  +dynamic descp
+  +void getWeatherValues()
+}
+
+class "my_weather_app::main.dart::MyWeather" {
+  +_MyWeatherState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "my_weather_app::main.dart::MyWeather"
+
+class "my_weather_app::main.dart::_MyWeatherState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "my_weather_app::main.dart::_MyWeatherState"
+
+class "my_weather_app::presentation::data::city_data.dart::CityData" {
+  +MyLocation myLocation
+  -SharedPreferencesImpl _sharedPreferencesImpl
+  -List<String> _cityList
+  +List<String> showCities
+  +int amountOfCities
+  +Future getDataFromMemory()
+  +Future addCity()
+  +Future deleteCity()
+  +Future firstElemMyLocation()
+  +dynamic checkForDuplicates()
+}
+
+"my_weather_app::presentation::data::city_data.dart::CityData" o-- "my_weather_app::data::location::my_location.dart::MyLocation"
+"my_weather_app::presentation::data::city_data.dart::CityData" o-- "my_weather_app::data::local_memmory_shared_preferences::shared_preferences_impl.dart::SharedPreferencesImpl"
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "my_weather_app::presentation::data::city_data.dart::CityData"
+
+class "my_weather_app::presentation::data::spinner.dart::Spinner" {
+  -bool _showSpinner
+  +bool showSpinner
+  +void changeSpinnerState()
+}
+
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "my_weather_app::presentation::data::spinner.dart::Spinner"
+
+class "my_weather_app::presentation::screens::get_weather_screen::get_weather_screen.dart::GetWeatherScreen" {
+  {static} +dynamic id
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::get_weather_screen::get_weather_screen.dart::GetWeatherScreen"
+
+class "my_weather_app::presentation::screens::loading_screen.dart::LoadingScreen" {
+  {static} +dynamic id
+  +_LoadingScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "my_weather_app::presentation::screens::loading_screen.dart::LoadingScreen"
+
+class "my_weather_app::presentation::screens::loading_screen.dart::_LoadingScreenState" {
+  +Future fetchData()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "my_weather_app::presentation::screens::loading_screen.dart::_LoadingScreenState"
+
+class "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::back_card.dart::BackCard" {
+  +int positionedNumber
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::back_card.dart::BackCard"
+
+class "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::back_card_content.dart::BackCardContent" {
+  +dynamic cityName
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::back_card_content.dart::BackCardContent"
+
+class "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::horizontal_divider.dart::HorizontalDivider" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::horizontal_divider.dart::HorizontalDivider"
+
+class "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::hourly_component.dart::Hourly" {
+  +WeatherHourly weatherHourly
+  +List hourlyComponents()
+  +Widget build()
+}
+
+"my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::hourly_component.dart::Hourly" o-- "my_weather_app::domain::weather::weather_components::weather_hourly.dart::WeatherHourly"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::hourly_component.dart::Hourly"
+
+class "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::hourly_component.dart::HourlyComponent" {
+  +dynamic hour
+  +dynamic icon
+  +dynamic temp
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::hourly_component.dart::HourlyComponent"
+
+class "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::sun_set_rise.dart::SunSetRiseComponent" {
+  +SunSetRise sunSetRise
+  +Widget build()
+}
+
+"my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::sun_set_rise.dart::SunSetRiseComponent" o-- "my_weather_app::domain::weather::weather_components::sun_set_rise.dart::SunSetRise"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::sun_set_rise.dart::SunSetRiseComponent"
+
+class "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::weekly_component.dart::Weekly" {
+  +WeatherWeekly weatherWeekly
+  +List weeklyComponents()
+  +Widget build()
+}
+
+"my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::weekly_component.dart::Weekly" o-- "my_weather_app::domain::weather::weather_components::weather_weekly.dart::WeatherWeekly"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::weekly_component.dart::Weekly"
+
+class "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::weekly_component.dart::WeeklyComponent" {
+  +dynamic date
+  +dynamic icon
+  +dynamic tempDay
+  +dynamic tempNight
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::weekly_component.dart::WeeklyComponent"
+
+class "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::wind.dart::WindComponent" {
+  +Wind wind
+  +Widget build()
+}
+
+"my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::wind.dart::WindComponent" o-- "my_weather_app::domain::weather::weather_components::wind.dart::Wind"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::content_components::wind.dart::WindComponent"
+
+class "my_weather_app::presentation::screens::main_screen::components::card_flip::card.dart::CardComponent" {
+  +int positionedNumber
+  +Widget child
+  +Widget build()
+}
+
+"my_weather_app::presentation::screens::main_screen::components::card_flip::card.dart::CardComponent" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::main_screen::components::card_flip::card.dart::CardComponent"
+
+class "my_weather_app::presentation::screens::main_screen::components::card_flip::flip_animation_cards.dart::FlipAnimationCards" {
+  +int positionedNumber
+  +_FlipAnimationCardsState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "my_weather_app::presentation::screens::main_screen::components::card_flip::flip_animation_cards.dart::FlipAnimationCards"
+
+class "my_weather_app::presentation::screens::main_screen::components::card_flip::flip_animation_cards.dart::_FlipAnimationCardsState" {
+  -bool _showFront
+  +FrontCard frontCard
+  +BackCard backCard
+  -Widget __transitionBuilder()
+  +void initState()
+  +Widget build()
+}
+
+"my_weather_app::presentation::screens::main_screen::components::card_flip::flip_animation_cards.dart::_FlipAnimationCardsState" o-- "my_weather_app::presentation::screens::main_screen::components::card_flip::front_of_card::front_card.dart::FrontCard"
+"my_weather_app::presentation::screens::main_screen::components::card_flip::flip_animation_cards.dart::_FlipAnimationCardsState" o-- "my_weather_app::presentation::screens::main_screen::components::card_flip::back_of_card::back_card.dart::BackCard"
+"flutter::src::widgets::framework.dart::State<T>" <|-- "my_weather_app::presentation::screens::main_screen::components::card_flip::flip_animation_cards.dart::_FlipAnimationCardsState"
+
+class "my_weather_app::presentation::screens::main_screen::components::card_flip::front_of_card::front_card.dart::FrontCard" {
+  +int positionedNumber
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::main_screen::components::card_flip::front_of_card::front_card.dart::FrontCard"
+
+class "my_weather_app::presentation::screens::main_screen::components::card_flip::front_of_card::front_card_content.dart::FrontCardContent" {
+  +dynamic cityName
+  +int positionedNumber
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::main_screen::components::card_flip::front_of_card::front_card_content.dart::FrontCardContent"
+
+class "my_weather_app::presentation::screens::main_screen::components::city_cards_widget.dart::CityCards" {
+  +int amountOfCards
+  +List flipCardsBuilder()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::main_screen::components::city_cards_widget.dart::CityCards"
+
+class "my_weather_app::presentation::screens::main_screen::components::menage_city_button.dart::MenageCityButton" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::main_screen::components::menage_city_button.dart::MenageCityButton"
+
+class "my_weather_app::presentation::screens::main_screen::main_screen.dart::MainScreen" {
+  {static} +dynamic id
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::main_screen::main_screen.dart::MainScreen"
+
+class "my_weather_app::presentation::screens::manage_cities_screen::components::city_list_widget.dart::CityList" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::manage_cities_screen::components::city_list_widget.dart::CityList"
+
+class "my_weather_app::presentation::screens::manage_cities_screen::components::city_tile.dart::CityTile" {
+  +dynamic cityName
+  +dynamic callbackSwipeDetector
+  +_CityTileState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "my_weather_app::presentation::screens::manage_cities_screen::components::city_tile.dart::CityTile"
+
+class "my_weather_app::presentation::screens::manage_cities_screen::components::city_tile.dart::_CityTileState" {
+  +bool swiped
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State<T>" <|-- "my_weather_app::presentation::screens::manage_cities_screen::components::city_tile.dart::_CityTileState"
+
+class "my_weather_app::presentation::screens::manage_cities_screen::components::city_tile.dart::TileItSelf" {
+  +dynamic cityName
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::manage_cities_screen::components::city_tile.dart::TileItSelf"
+
+class "my_weather_app::presentation::screens::manage_cities_screen::manage_cities_screen.dart::ManageCitiesScreen" {
+  {static} +dynamic id
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "my_weather_app::presentation::screens::manage_cities_screen::manage_cities_screen.dart::ManageCitiesScreen"
+
+
+@enduml
