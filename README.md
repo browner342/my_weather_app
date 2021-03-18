@@ -4,13 +4,23 @@ A new Flutter application.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Simple weather application.
+Information about weather based on API: https://openweathermap.org/
 
-A few resources to get you started if this is your first Flutter project:
+App features:
+    
+    Weather in 10 different cities
+    Weather in your location based on GPS
+    Weather in typed city
+    Weather now
+    Weather for next 7 days
+    Weather hourly
+    Wind
+    Hours of sunset and sunrise
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Weather description:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+    Temperature
+    Conditions in words
+    Conditions in emoticons
+    Condidions in color
