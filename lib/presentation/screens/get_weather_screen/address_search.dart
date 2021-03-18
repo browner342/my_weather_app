@@ -32,7 +32,30 @@ class AddressSearch extends SearchDelegate<Suggestion> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return null;
+    PlaceApiProvider placeApiProvider = PlaceApiProvider(sessionToken);
+
+    return FutureBuilder(
+      future: placeApiProvider.fetchSuggestions(query, ''),
+      builder: (context, snapshot) => query == ''
+          ? Container(
+              padding: EdgeInsets.all(16.0),
+              child: Text('Enter your address'),
+            )
+          : snapshot.hasData
+              ? ListView.builder(
+                  itemBuilder: (context, index) => ListTile(
+                    title: Text(snapshot.data[index].toString()),
+                    onTap: () {
+                      close(context, snapshot.data[index]);
+                    },
+                  ),
+                  itemCount: snapshot.data.length,
+                )
+              : Container(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text('Enter your address'),
+                ),
+    );
   }
 
   @override
