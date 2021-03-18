@@ -31,7 +31,6 @@ class DataDecoder {
   }
 
   WeatherNow _decodeWeatherNow() {
-
     var actual = weather.weatherNow;
 
     var temp = weatherData['current']['temp'];
@@ -46,7 +45,7 @@ class DataDecoder {
     conditions = weatherData['current']['weather'][0]['id'];
     weatherModel.getWeatherValues(conditions);
     actual.weatherIcon = weatherModel.icon;
-    actual.color = weatherModel.color;
+    actual.colors = weatherModel.colors;
 
     return actual;
   }
@@ -89,7 +88,6 @@ class DataDecoder {
       conditions = weatherData['daily'][i]['weather'][0]['id'];
       weatherModel.getWeatherValues(conditions);
       actual.weatherIcon[i] = weatherModel.icon;
-
     }
 
     return actual;

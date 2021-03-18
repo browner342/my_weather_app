@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:my_weather_app/domain/cites_weather.dart';
 import 'package:my_weather_app/presentation/constants/const_names.dart';
+import 'package:my_weather_app/presentation/constants/const_styles.dart';
 import 'package:my_weather_app/presentation/data/city_data.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +27,7 @@ class MainScreen extends StatelessWidget {
         }
       },
       child: Scaffold(
-        backgroundColor: Colors.blue,
+        backgroundColor: kBackgroundColor,
         floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
         floatingActionButton: MenageCityButton(),
         body: CityCards(

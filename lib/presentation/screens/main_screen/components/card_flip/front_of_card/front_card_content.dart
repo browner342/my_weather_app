@@ -18,10 +18,7 @@ class FrontCardContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final actual =
         Provider.of<CitiesWeather>(context).citiesWeather[cityName].weatherNow;
-    print(actual.color);
-    print(actual.weatherIcon);
-    print(actual.temperatureDay);
-    print(actual.condition);
+
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -40,6 +40,7 @@ class _MyWeatherState extends State<MyWeather> {
 
     return MaterialApp(
       theme: ThemeData.light(),
+      debugShowCheckedModeBanner: false,
       initialRoute: LoadingScreen.id,
       routes: {
         LoadingScreen.id: (context) => LoadingScreen(),

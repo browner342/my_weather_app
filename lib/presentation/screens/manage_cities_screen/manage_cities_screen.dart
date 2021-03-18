@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:my_weather_app/presentation/constants/const_names.dart';
 import 'package:my_weather_app/presentation/constants/const_styles.dart';
 import 'package:my_weather_app/presentation/screens/get_weather_screen/get_weather_screen.dart';
@@ -11,6 +12,7 @@ class ManageCitiesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBackgroundColor,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -31,6 +33,9 @@ class ManageCitiesScreen extends StatelessWidget {
                       Icons.arrow_back,
                       size: kBackArrowSize,
                     )),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.12,
+                ),
                 Text(
                   'City list',
                   style: kTitleStyle,

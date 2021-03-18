@@ -23,13 +23,10 @@ class CityCards extends StatelessWidget {
     return SafeArea(
       child: ListView(
         children: [
-          SizedBox(
-            height: 30.0,
-          ),
           CarouselSlider(
             items: cardList,
             options: CarouselOptions(
-              height: MediaQuery.of(context).size.height - 90,
+              height: MediaQuery.of(context).size.height - 30,
               enlargeCenterPage: true,
               autoPlay: false,
               aspectRatio: 16 / 9,

@@ -10,6 +10,7 @@ class MenageCityButton extends StatelessWidget {
         size: 30.0,
         color: Colors.black,
       ),
+      backgroundColor: Colors.white,
       onPressed: () {
         Navigator.pushNamed(context, ManageCitiesScreen.id);
       },
