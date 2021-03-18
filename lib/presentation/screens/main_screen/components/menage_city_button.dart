@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_weather_app/presentation/constants/const_styles.dart';
 import 'package:my_weather_app/presentation/screens/manage_cities_screen/manage_cities_screen.dart';
 
 class MenageCityButton extends StatelessWidget {
@@ -8,9 +9,9 @@ class MenageCityButton extends StatelessWidget {
       child: Icon(
         Icons.search_outlined,
         size: 30.0,
-        color: Colors.black,
+        color: kButtonInsideColor,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: kButtonBackgroundColor,
       onPressed: () {
         Navigator.pushNamed(context, ManageCitiesScreen.id);
       },

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 const kCityTileHeight = 80.0;
 const kBackgroundColor = Color(0xFFE4E4E4);
+const kButtonBackgroundColor = Colors.white;
+const kButtonInsideColor = Color(0xFF7B7575);
+const kBackArrowColor = Color(0xFF7B7575);
 
 const kCityCardsStyle = BoxDecoration(
   borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -10,13 +13,13 @@ const kCityCardsStyle = BoxDecoration(
 
 const kCityTileStyle = BoxDecoration(
   borderRadius: BorderRadius.all(Radius.circular(20)),
-  color: Colors.blue,
+  color: kButtonBackgroundColor,
 );
 
 const kCityTileTextStyle = TextStyle(
   fontSize: 18.0,
   fontWeight: FontWeight.w400,
-  color: Colors.white,
+  color: kButtonInsideColor,
 );
 
 const kTitleStyle = TextStyle(
@@ -37,8 +40,12 @@ const kTextFieldDecoration = InputDecoration(
   ),
 );
 
+const kButtonTextStyle = TextStyle(
+  color: kButtonInsideColor,
+);
+
 const kButtonStyle = BoxDecoration(
   borderRadius: BorderRadius.all(Radius.circular(20)),
-  color: Colors.blue,
+  color: kButtonBackgroundColor,
 );
 const kBackArrowSize = 35.0;

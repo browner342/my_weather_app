@@ -15,10 +15,14 @@ class ManageCitiesScreen extends StatelessWidget {
       backgroundColor: kBackgroundColor,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          color: kButtonInsideColor,
+        ),
         onPressed: () {
           Navigator.pushNamed(context, GetWeatherScreen.id);
         },
+        backgroundColor: kButtonBackgroundColor,
       ),
       body: SafeArea(
         child: Column(
@@ -32,6 +36,7 @@ class ManageCitiesScreen extends StatelessWidget {
                     child: Icon(
                       Icons.arrow_back,
                       size: kBackArrowSize,
+                      color: kBackArrowColor,
                     )),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.12,

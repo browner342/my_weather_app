@@ -44,6 +44,7 @@ class GetWeatherScreen extends StatelessWidget {
                     child: Icon(
                       Icons.arrow_back,
                       size: kBackArrowSize,
+                      color: kBackArrowColor,
                     ),
                   ),
                 ),
@@ -76,7 +77,7 @@ class GetWeatherScreen extends StatelessWidget {
                     },
                     child: Text(
                       'Get Weather',
-                      // style: kButtonTextStyle,
+                      style: kButtonTextStyle,
                     ),
                   ),
                 ),

@@ -39,7 +39,9 @@ class _MyWeatherState extends State<MyWeather> {
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
     return MaterialApp(
-      theme: ThemeData.light(),
+      theme: ThemeData(
+        fontFamily: 'DINAlternate',
+      ),
       debugShowCheckedModeBanner: false,
       initialRoute: LoadingScreen.id,
       routes: {
