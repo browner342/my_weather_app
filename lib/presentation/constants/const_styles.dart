@@ -5,6 +5,7 @@ const kBackgroundColor = Color(0xFFE4E4E4);
 const kButtonBackgroundColor = Colors.white;
 const kButtonInsideColor = Color(0xFF7B7575);
 const kBackArrowColor = Color(0xFF7B7575);
+const kTextColor = Color(0xFF37474f);
 
 const kCityCardsStyle = BoxDecoration(
   borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -27,7 +28,7 @@ const kCityTileStyle = BoxDecoration(
 const kCityTileTextStyle = TextStyle(
   fontSize: 20.0,
   fontWeight: FontWeight.w900,
-  color: kButtonInsideColor,
+  color: kTextColor,
 );
 
 const kTitleStyle = TextStyle(

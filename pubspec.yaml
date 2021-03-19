@@ -38,6 +38,8 @@ dev_dependencies:
     sdk: flutter
 
   mockito: ^4.1.0
+  flutter_launcher_icons: ^0.7.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -52,7 +54,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/
+    - images/MyWeatherAppLogo.png
+    - assets/logo/
 
   fonts:
     - family: DINAlternate
