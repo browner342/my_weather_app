@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:my_weather_app/presentation/constants/const_styles.dart';
+import 'package:my_weather_app/presentation/screens/get_weather_screen/get_weather_screen.dart';
+import 'package:my_weather_app/presentation/screens/manage_cities_screen/components/tile_itself.dart';
 import 'package:swipedetector/swipedetector.dart';
 
 class CityTile extends StatefulWidget {
-  CityTile({this.cityName, this.callbackSwipeDetector});
+  CityTile(
+      {this.cityName, this.callbackSwipeDetector, this.callbackTapDetector});
 
   final String cityName;
   final callbackSwipeDetector;
+  final callbackTapDetector;
 
   @override
   _CityTileState createState() => _CityTileState();
@@ -21,7 +25,11 @@ class _CityTileState extends State<CityTile> {
       onTap: () {
         setState(() {
           // un swiped tile
-          swiped = false;
+          if (swiped) {
+            swiped = false;
+          } else {
+            widget.callbackTapDetector();
+          }
         });
       },
       child: SwipeDetector(
@@ -62,24 +70,6 @@ class _CityTileState extends State<CityTile> {
             ),
           ),
         ]),
-      ),
-    );
-  }
-}
-
-class TileItSelf extends StatelessWidget {
-  TileItSelf({this.cityName});
-  final String cityName;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      decoration: kCityTileStyle,
-      child: Center(
-        child: Text(
-          cityName,
-          style: kCityTileTextStyle,
-        ),
       ),
     );
   }

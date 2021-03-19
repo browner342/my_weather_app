@@ -21,6 +21,12 @@ class CityList extends StatelessWidget {
                       await Provider.of<CityData>(context, listen: false)
                           .deleteCity(i);
                     },
+                    callbackTapDetector: () async {
+                      await Provider.of<CityData>(context, listen: false)
+                          .setChosenCity(i);
+
+                      Navigator.pop(context);
+                    },
                   ),
                 );
               },

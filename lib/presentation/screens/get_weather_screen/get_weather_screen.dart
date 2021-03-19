@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:my_weather_app/data/networking/place_service.dart';
@@ -75,27 +76,29 @@ class GetWeatherScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                Container(
-                  decoration: kButtonStyle,
-                  child: FlatButton(
-                    onPressed: () async {
-                      if (cityName != null) {
-                        spinner.changeSpinnerState();
-                        await cityData.addCity(cityName);
+                FlatButton(
+                  padding: EdgeInsets.all(16.0),
+                  color: kButtonBackgroundColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0)),
+                  splashColor: Colors.grey.shade300,
+                  onPressed: () async {
+                    if (cityName != null) {
+                      spinner.changeSpinnerState();
+                      await cityData.addCity(cityName);
 
-                        List<String> cityNames = cityData.showCities;
-                        await citiesWeather.setCityWeather(cityNames);
+                      List<String> cityNames = cityData.showCities;
+                      await citiesWeather.setCityWeather(cityNames);
 
-                        spinner.changeSpinnerState();
+                      spinner.changeSpinnerState();
 
-                        int count = 0;
-                        Navigator.of(context).popUntil((_) => count++ >= 2);
-                      }
-                    },
-                    child: Text(
-                      'Get Weather',
-                      style: kButtonTextStyle,
-                    ),
+                      int count = 0;
+                      Navigator.of(context).popUntil((_) => count++ >= 2);
+                    }
+                  },
+                  child: Text(
+                    'Get Weather',
+                    style: kButtonTextStyle,
                   ),
                 ),
               ],

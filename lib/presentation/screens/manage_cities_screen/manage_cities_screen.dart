@@ -44,14 +44,6 @@ class ManageCitiesScreen extends StatelessWidget {
                       size: kBackArrowSize,
                       color: kBackArrowColor,
                     )),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.12,
-                ),
-                Text(
-                  'City list',
-                  style: kTitleStyle,
-                  textAlign: TextAlign.center,
-                ),
               ],
             ),
             CityList(),

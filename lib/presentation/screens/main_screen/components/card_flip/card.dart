@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_weather_app/domain/cites_weather.dart';
+import 'package:my_weather_app/presentation/constants/const_styles.dart';
 import 'package:my_weather_app/presentation/data/city_data.dart';
 import 'package:provider/provider.dart';
 
@@ -20,23 +21,7 @@ class CardComponent extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 30.0),
       child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: colors,
-          ),
-          shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.circular(20.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
+        decoration: kMainScreenCardStyle(colors),
         child: Center(child: child),
       ),
     );

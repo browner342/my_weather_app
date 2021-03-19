@@ -13,7 +13,7 @@ class WeatherData {
       var coords = address.first.coordinates;
 
       Networking networking = Networking(
-          'http://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&appid=$kApiKey&units=metric');
+          'https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.longitude}&appid=$kApiKey&units=metric');
 
       _weatherData = await networking.getData();
 

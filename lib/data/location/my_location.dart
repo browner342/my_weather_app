@@ -20,15 +20,20 @@ class MyLocation {
   }
 
   Future<String> getCityNameFromLocation() async {
-    Coordinates coordinates = await _myActualLocation();
-    if (coordinates.latitude == null || coordinates.longitude == null) {
-      print('Error location');
-      return null;
+    try {
+      Coordinates coordinates = await _myActualLocation();
+      if (coordinates.latitude == null || coordinates.longitude == null) {
+        print('Error location');
+        return null;
+      }
+
+      var address =
+          await Geocoder.local.findAddressesFromCoordinates(coordinates);
+
+      return address.first.locality;
+    } catch (e) {
+      print(e);
+      return 'fail location';
     }
-
-    var address =
-        await Geocoder.local.findAddressesFromCoordinates(coordinates);
-
-    return address.first.locality;
   }
 }

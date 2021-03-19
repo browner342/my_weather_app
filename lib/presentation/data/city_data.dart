@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:my_weather_app/data/constants/constants.dart';
@@ -8,6 +9,16 @@ class CityData extends ChangeNotifier {
   MyLocation myLocation = GetIt.instance<MyLocation>();
   SharedPreferencesImpl _sharedPreferencesImpl = SharedPreferencesImpl();
   List<String> _cityList = [];
+  //user choose city to look at in menage city screen
+  CarouselControllerImpl _carouselControllerImpl = CarouselControllerImpl();
+
+  CarouselControllerImpl get carouselController => _carouselControllerImpl;
+
+  Future<void> setChosenCity(int numberOfChosenCity) async {
+    await _carouselControllerImpl.animateToPage(numberOfChosenCity);
+
+    notifyListeners();
+  }
 
   Future<void> getDataFromMemory() async {
     _cityList = await _sharedPreferencesImpl.showCityListFromMemory();

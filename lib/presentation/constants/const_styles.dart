@@ -14,11 +14,19 @@ const kCityCardsStyle = BoxDecoration(
 const kCityTileStyle = BoxDecoration(
   borderRadius: BorderRadius.all(Radius.circular(20)),
   color: kButtonBackgroundColor,
+  boxShadow: [
+    BoxShadow(
+      color: Colors.grey,
+      offset: const Offset(2.0, 2.0),
+      blurRadius: 1.0,
+      spreadRadius: 0.2,
+    ),
+  ],
 );
 
 const kCityTileTextStyle = TextStyle(
-  fontSize: 18.0,
-  fontWeight: FontWeight.w400,
+  fontSize: 20.0,
+  fontWeight: FontWeight.w900,
   color: kButtonInsideColor,
 );
 
@@ -49,3 +57,23 @@ const kButtonStyle = BoxDecoration(
   color: kButtonBackgroundColor,
 );
 const kBackArrowSize = 35.0;
+
+kMainScreenCardStyle(var colors) {
+  return BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.topRight,
+      end: Alignment.bottomLeft,
+      colors: colors,
+    ),
+    shape: BoxShape.rectangle,
+    borderRadius: BorderRadius.circular(20.0),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.5),
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0, 3), // changes position of shadow
+      ),
+    ],
+  );
+}
