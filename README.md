@@ -1,6 +1,8 @@
 # my_weather_app
 
 A new Flutter application.
+Releases(only in .apk):
+https://drive.google.com/drive/folders/1mXOz__z3viX5_kyxt_eNuHTH9UA0Fisn?usp=sharing
 
 ## Getting Started
 
@@ -9,9 +11,9 @@ Information about weather based on API: https://openweathermap.org/
 
 App features:
     
-    Weather in 10 different cities
+    Weather in different cities
     Weather in your location based on GPS
-    Weather in typed city
+    Weather in typed city with google cloud autocomplete
     Weather now
     Weather for next 7 days
     Weather hourly
