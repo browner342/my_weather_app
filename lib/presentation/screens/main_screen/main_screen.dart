@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:my_weather_app/data/networking/internet_connection.dart';
 import 'package:my_weather_app/domain/cites_weather.dart';

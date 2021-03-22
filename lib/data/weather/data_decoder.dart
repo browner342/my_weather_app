@@ -96,11 +96,38 @@ class DataDecoder {
   Wind _decodeWind() {
     var actual = weather.wind;
     double tmp;
-    actual.direction = weatherData['current']['wind_deg'].toString();
+    final direction = weatherData['current']['wind_deg'];
+    actual.direction = _windProperites(direction);
     tmp = weatherData['current']['wind_speed'] * 3.6;
     actual.speed = tmp.toInt();
 
     return actual;
+  }
+
+  String _windProperites(int deg) {
+    if (deg <= 360) {
+      if (deg < 22.5) {
+        return 'North';
+      } else if (deg < 67.5) {
+        return 'NorthEast';
+      } else if (deg < 112.5) {
+        return 'East';
+      } else if (deg < 157.5) {
+        return 'SouthEast';
+      } else if (deg < 202.5) {
+        return 'South';
+      } else if (deg < 247.5) {
+        return 'SouthWest';
+      } else if (deg < 292.5) {
+        return 'West';
+      } else if (deg < 337.5) {
+        return 'NorthWest';
+      } else {
+        return 'North';
+      }
+    } else {
+      return 'N/A';
+    }
   }
 
   SunSetRise _decodeSunSetRise() {

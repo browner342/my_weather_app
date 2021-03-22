@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_weather_app/presentation/constants/const_styles.dart';
-import 'package:my_weather_app/presentation/screens/get_weather_screen/get_weather_screen.dart';
 import 'package:my_weather_app/presentation/screens/manage_cities_screen/components/tile_itself.dart';
 import 'package:swipedetector/swipedetector.dart';
 

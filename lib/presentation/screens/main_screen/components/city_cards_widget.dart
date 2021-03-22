@@ -7,7 +7,6 @@ import 'card_flip/flip_animation_cards.dart';
 class CityCards extends StatelessWidget {
   CityCards({this.amountOfCards});
   final int amountOfCards;
-  final _controller = CarouselControllerImpl();
 
   List<FlipAnimationCards> flipCardsBuilder() {
     List<FlipAnimationCards> cardHolder = [];

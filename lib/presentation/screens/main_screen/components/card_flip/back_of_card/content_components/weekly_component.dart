@@ -43,13 +43,14 @@ class WeeklyComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('${DateFormat('EEE, d MMM').format(date)}'),
-            Text(icon),
+            Text('${DateFormat('EEE, d MMM').format(date)}',
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            Icon(icon),
             Text(tempDay.toString() + '/' + tempNight.toString()),
           ],
         ),

@@ -50,7 +50,7 @@ class HourlyComponent extends StatelessWidget {
           SizedBox(
             height: 10.0,
           ),
-          Text(icon),
+          Icon(icon),
           SizedBox(
             height: 10.0,
           ),

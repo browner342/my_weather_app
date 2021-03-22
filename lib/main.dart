@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:my_weather_app/data/location/my_location.dart';
 import 'package:my_weather_app/domain/cites_weather.dart';
+import 'package:my_weather_app/presentation/constants/const_styles.dart';
 import 'package:my_weather_app/presentation/data/city_data.dart';
 import 'package:my_weather_app/presentation/data/spinner.dart';
 import 'package:my_weather_app/presentation/screens/get_weather_screen/get_weather_screen.dart';
@@ -40,7 +41,15 @@ class _MyWeatherState extends State<MyWeather> {
 
     return MaterialApp(
       theme: ThemeData(
+        accentColor: kButtonInsideColor,
         fontFamily: 'DINAlternate',
+        appBarTheme: AppBarTheme(
+          color: kBackgroundColor,
+          elevation: 0,
+          iconTheme: IconThemeData(
+            color: kButtonInsideColor,
+          ),
+        ),
       ),
       debugShowCheckedModeBanner: false,
       initialRoute: LoadingScreen.id,

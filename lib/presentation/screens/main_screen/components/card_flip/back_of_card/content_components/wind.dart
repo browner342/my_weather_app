@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_weather_app/domain/weather/weather_components/wind.dart';
 
@@ -11,10 +14,33 @@ class WindComponent extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text('Wind'),
-          //TODO: change from hardCode
-          Text('Direction: Northeast'),
-          Text('${wind.speed} km/h')
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(CupertinoIcons.wind),
+              SizedBox(
+                width: 10.0,
+              ),
+              Text(
+                'Wind',
+                style: TextStyle(fontSize: 18.0),
+              ),
+            ],
+          ),
+          Text(
+            '${wind.direction}',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Speed: '),
+              Text(
+                '${wind.speed}km/h',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
         ],
       ),
     );

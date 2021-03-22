@@ -30,22 +30,10 @@ class ManageCitiesScreen extends StatelessWidget {
         },
         backgroundColor: kButtonBackgroundColor,
       ),
+      appBar: AppBar(),
       body: SafeArea(
         child: Column(
           children: [
-            Row(
-              children: [
-                FlatButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(
-                      Icons.arrow_back,
-                      size: kBackArrowSize,
-                      color: kBackArrowColor,
-                    )),
-              ],
-            ),
             CityList(),
             SizedBox(
               height: 80.0,

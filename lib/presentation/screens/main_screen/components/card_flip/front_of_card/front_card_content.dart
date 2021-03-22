@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_weather_app/domain/cites_weather.dart';
 import 'package:my_weather_app/presentation/constants/const_styles.dart';
@@ -36,7 +37,7 @@ class FrontCardContent extends StatelessWidget {
             Center(
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: Text(actual.weatherIcon),
+                child: Icon(actual.weatherIcon),
               ),
             ),
             Center(

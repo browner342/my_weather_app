@@ -28,13 +28,14 @@ class BackCardContent extends StatelessWidget {
 
     return Container(
       width: MediaQuery.of(context).size.width,
-      child: Column(
+      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+      child: ListView(
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 15.0, bottom: 10.0),
             child: Text(
               cityName,
-              style: TextStyle(fontSize: 32.0),
+              style: TextStyle(fontSize: 18.0),
               textAlign: TextAlign.center,
             ),
           ),
@@ -46,7 +47,8 @@ class BackCardContent extends StatelessWidget {
           Weekly(
             weatherWeekly: weatherWeekly,
           ),
-          Expanded(
+          Container(
+            height: 100,
             child: Row(
               children: [
                 SunSetRiseComponent(

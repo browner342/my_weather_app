@@ -1,26 +1,27 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:weather_icons/weather_icons.dart';
 
 class WeatherModel {
-  String icon;
+  IconData icon;
   List<Color> colors;
   String descp;
 
   void getWeatherValues(int condition) {
     //ThunderStorm
     if (condition < 300) {
-      icon = '🌩';
+      icon = WeatherIcons.thunderstorm;
       descp = 'Stormy';
       colors = [Color(0xFFD1D1C9), Color(0xFF696965)];
     } else if (condition < 400) {
       //Drizzle
-      icon = '🌧';
+      icon = WeatherIcons.showers;
       descp = 'Drizzly';
       colors = [Color(0xFFDFDFDF), Color(0xFF707070)];
     } else if (condition < 600) {
       //Rain
-      icon = '☔️';
+      icon = WeatherIcons.rain;
       descp = 'Rainy';
       colors = [
         Color(0xFF1A6DCC),
@@ -30,7 +31,7 @@ class WeatherModel {
       ];
     } else if (condition < 700) {
       //Snow
-      icon = '☃️';
+      icon = WeatherIcons.snow;
       descp = 'Snowy';
       colors = [
         Color(0xFFB4D1F8),
@@ -39,22 +40,22 @@ class WeatherModel {
       ];
     } else if (condition < 800) {
       //Atmosphere
-      icon = '🌫';
+      icon = WeatherIcons.day_sunny;
       descp = 'Clear sky';
       colors = [Color(0xFF2BAAF8), Color(0xFF73DDFC)];
     } else if (condition == 800) {
       //Sun
-      icon = '☀️';
+      icon = WeatherIcons.day_sunny;
       descp = 'Sunny';
       colors = [Colors.white, Colors.blue];
     } else if (condition <= 804) {
       //Clouds
-      icon = '☁️';
+      icon = WeatherIcons.cloudy;
       descp = 'Cloudy';
       colors = [Color(0xFF156ABF), Color(0xFFAFD4F8)];
     } else {
       //other
-      icon = '🤷‍';
+      icon = WeatherIcons.alien;
       descp = 'Other';
       colors = [Color(0xFF381EE6), Color(0xFF381EE6)];
     }
