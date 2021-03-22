@@ -4,7 +4,10 @@ A new Flutter application.
 Releases(only in .apk):
 https://drive.google.com/drive/folders/1mXOz__z3viX5_kyxt_eNuHTH9UA0Fisn?usp=sharing
 
-## Getting Started
+## How do app look like
+<img src="my_weather_app_show.gif" width = 200>
+
+### Getting Started
 
 Simple weather application.
 Information about weather based on API: https://openweathermap.org/
