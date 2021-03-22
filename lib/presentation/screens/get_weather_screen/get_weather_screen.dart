@@ -24,66 +24,70 @@ class GetWeatherScreen extends StatelessWidget {
     final _controller = TextEditingController();
     _controller.text = '';
 
-    return Scaffold(
-      appBar: AppBar(),
-      body: ModalProgressHUD(
-        inAsyncCall: spinner.showSpinner,
-        child: Scaffold(
-          backgroundColor: kBackgroundColor,
-          body: Container(
-            constraints: BoxConstraints.expand(),
-            child: SafeArea(
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.all(20.0),
-                    child: TextField(
-                      style: TextStyle(color: Colors.black),
-                      decoration: kTextFieldDecoration,
-                      controller: _controller,
-                      readOnly: true,
-                      onTap: () async {
-                        // generate a new token here
-                        final sessionToken = Uuid().v4();
-                        final Suggestion result = await showSearch(
-                          context: context,
-                          delegate: AddressSearch(sessionToken),
-                        );
+    return ModalProgressHUD(
+      inAsyncCall: spinner.showSpinner,
+      child: Scaffold(
+        backgroundColor: kBackgroundColor,
+        appBar: AppBar(),
+        body: Container(
+          constraints: BoxConstraints.expand(),
+          child: SafeArea(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.all(20.0),
+                  child: TextField(
+                    style: TextStyle(color: Colors.black),
+                    decoration: kTextFieldDecoration,
+                    controller: _controller,
+                    readOnly: true,
+                    onTap: () async {
+                      // generate a new token here
+                      final sessionToken = Uuid().v4();
+                      final Suggestion result = await showSearch(
+                        context: context,
+                        delegate: AddressSearch(sessionToken),
+                      );
 
-                        cityName = result.placeId.split(',')[0];
-                        if (cityName != null) {
-                          _controller.text = cityName;
-                        }
-                      },
-                    ),
-                  ),
-                  FlatButton(
-                    padding: EdgeInsets.all(16.0),
-                    color: kButtonBackgroundColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0)),
-                    splashColor: Colors.grey.shade300,
-                    onPressed: () async {
+                      cityName = result.placeId.split(',')[0];
                       if (cityName != null) {
-                        spinner.changeSpinnerState();
-                        await cityData.addCity(cityName);
-
-                        List<String> cityNames = cityData.showCities;
-                        await citiesWeather.setCityWeather(cityNames);
-
-                        spinner.changeSpinnerState();
-
-                        int count = 0;
-                        Navigator.of(context).popUntil((_) => count++ >= 2);
+                        _controller.text = cityName;
                       }
                     },
-                    child: Text(
-                      'Get Weather',
-                      style: kButtonTextStyle,
-                    ),
                   ),
-                ],
-              ),
+                ),
+                FlatButton(
+                  padding: EdgeInsets.all(16.0),
+                  color: kButtonBackgroundColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0)),
+                  splashColor: Colors.grey.shade300,
+                  onPressed: () async {
+                    if (cityName != null) {
+                      spinner.changeSpinnerState();
+                      await cityData.addCity(cityName);
+
+                      //Get all the weather data
+                      List<String> cityNames = cityData.showCities;
+                      await citiesWeather.setCityWeather(cityNames);
+
+                      spinner.changeSpinnerState();
+
+                      // Check last item in city list and go directly to that item
+                      final itemsInCityList = cityData.amountOfCities;
+                      await cityData.setChosenCity(itemsInCityList - 1);
+
+                      //Going back to the main screen
+                      int count = 0;
+                      Navigator.of(context).popUntil((_) => count++ >= 2);
+                    }
+                  },
+                  child: Text(
+                    'Get Weather',
+                    style: kButtonTextStyle,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
