@@ -5,7 +5,7 @@ class MyLocation {
   double _longitude;
   double _latitude;
 
-  Future<Coordinates> _myActualLocation() async {
+  Future<Coordinates> myActualLocation() async {
     try {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.low);
@@ -21,7 +21,7 @@ class MyLocation {
 
   Future<String> getCityNameFromLocation() async {
     try {
-      Coordinates coordinates = await _myActualLocation();
+      Coordinates coordinates = await myActualLocation();
       if (coordinates.latitude == null || coordinates.longitude == null) {
         print('Error location');
         return null;

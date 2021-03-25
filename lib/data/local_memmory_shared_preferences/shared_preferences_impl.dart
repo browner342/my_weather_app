@@ -1,7 +1,12 @@
 import 'package:my_weather_app/data/constants/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Class SharedPreferencesImpl
+/// Allows to use SharedPreferences
 class SharedPreferencesImpl {
+  /// Function showCityListFromMemory
+  /// Look into SharedPreferences looking for list of city names
+  /// return List of city names Future<List<String>>
   Future<List<String>> showCityListFromMemory() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> cityList = [];
